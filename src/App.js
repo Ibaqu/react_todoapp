@@ -14,7 +14,7 @@ class App extends Component {
       {
         id: 2,
         title: "Test2",
-        completed: true
+        completed: false
       },
       {
         id: 3,
@@ -24,11 +24,23 @@ class App extends Component {
     ]
   }
 
+  //Toggle Complete and incomplete
+  markComplete = (id) => {
+    this.setState({ Todos: this.state.Todos.map(todo => {
+          if(todo.id === id) {
+            todo.completed = !todo.completed
+          }
+          return todo;
+        }) });
+  }
+
   render() {
     //We pass the Todos in state as a prop. Here 'todos_prop' is the prop
     return (
       <div className="App">
-        <Todos todos_prop = {this.state.Todos} />
+        <Todos todos_prop = {this.state.Todos} 
+          markComplete = {this.markComplete} 
+        />
       </div>
     );
   }a
